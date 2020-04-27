@@ -12,22 +12,10 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        //allpy for searching
-        if($request->title)
-        {
-            $tasks = Task::select('title','description')
-            ->where('title','LIKE','%'.$request->title.'%')
-            ->orderBy('id','desc')
-            ->paginate(5);
-        }
-        else
-        {
-            $tasks = Task::orderBy('id','desc')->paginate(5);
-        }
+        $tasks = Task::orderBy('id','desc')->paginate(5);
         return view('tasks.index',compact('tasks'));
-         
     }
 
     /**
@@ -58,8 +46,7 @@ class TaskController extends Controller
             'title'=>'required|min:5|max:100',
             'description'=>'required',
         ],$message);
-        //end for validation
-
+        //end for validation    
         $post = new Task;
         $post->title = $request->title;
         $post->description = $request->description;
@@ -143,7 +130,16 @@ class TaskController extends Controller
 
     public function search(Request $request)
     {
-        
+
+        //allpy for searching
+        if($request->title)
+        {
+            $tasks = Task::select('title','description')
+            ->where('title','LIKE','%'.$request->title.'%')
+            ->orderBy('id','desc')
+            ->paginate(5);
+        }
+        return view('tasks',compact('tasks'));
     }
 
    
