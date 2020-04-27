@@ -26,7 +26,7 @@
 			<h2>Filter</h2>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-inline" action="{{ route('tasks.index') }}" method="post">
+					<form class="form-inline" action="{{ route('tasks.search') }}" method="post">
 						{{ csrf_field() }}
 						<div class="form-group">
 							<label for="title">Title:</label>
@@ -71,8 +71,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-  $("#applyFilter").click(function(){
-    $("#filterForm").fadeToggle('slow');
-  });
+	$("#applyFilter").click(function(){
+		$("#filterForm").fadeToggle('slow');
+	});
 });
 </script>
